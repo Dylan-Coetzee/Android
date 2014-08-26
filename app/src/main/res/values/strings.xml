@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Address Book</string>
+    <string name="contact_new">Welcome to Address Book, please enter details</string>
+    <string name="action_settings">Settings</string>
+    <string name="press_me">Add Contact</string>
+    <string name="more_detail">All Details</string>
+    <string name="Address">Home Address</string>
+    <string name="contact_details">Details</string>
+    <string name="new_contact">Back</string>
+    <string name="phne">Phone Number</string>
+    <string name="lname">Last Name</string>
+    <string name="fname">First Name</string>
+    <string name="email">Email Address</string>
+</resources>
