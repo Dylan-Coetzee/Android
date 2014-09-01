@@ -9,63 +9,128 @@
     android:orientation="vertical">
 
     <TextView
-        android:text="@string/contact_new"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:height="60dp"
-        android:textIsSelectable="false"
-        android:textSize="20dp" />
+        android:text="Address Book"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor = "#ff020000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="firstname"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:textColor = "#ff020000" />
 
     <EditText
-        android:id="@+id/phone_number_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtName"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/txtLastName"
+        android:layout_alignStart="@+id/txtLastName"
+        android:inputType="textPersonName" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:height="40dp"
-        android:layout_marginTop="25dp"
-        android:hint="Phone Number *"
-        />
+        android:text="lastname"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="22dp"
+        android:textColor = "#ff020000"/>
 
     <EditText
-        android:id="@+id/last_name_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtLastName"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignLeft="@+id/txtEmail"
+        android:layout_alignStart="@+id/txtEmail"
+        android:inputType="textPersonName" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:height="40dp"
-        android:layout_marginTop="25dp"
-        android:hint="Last Name *"/>
+        android:text="email address"
+        android:id="@+id/textView4"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor = "#ff020000" />
 
     <EditText
-        android:id="@+id/first_name_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtEmail"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView5"
+        android:layout_toRightOf="@+id/textView5"
+        android:inputType="textEmailAddress" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:height="40dp"
-        android:layout_marginTop="25dp"
-        android:hint="First Name"/>
+        android:text="phone number"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp"
+        android:textColor = "#ff020000"/>
 
     <EditText
-        android:id="@+id/email_address_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPhoneNumber"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_toRightOf="@+id/textView5"
+        android:layout_toEndOf="@+id/textView5"
+        android:inputType="phone" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:height="40dp"
-        android:layout_marginTop="25dp"
-        android:hint="Email Address"/>
+        android:text="address"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp"
+        android:textColor = "#ff020000"/>
 
     <EditText
-        android:id="@+id/home_address_edittext"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:height="40dp"
-        android:layout_marginTop="25dp"
-        android:hint="Home address"/>
+        android:id="@+id/txtHomeAddress"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_toRightOf="@+id/textView5"
+        android:layout_toEndOf="@+id/textView5"
+        android:inputType="text|textMultiLine|textPostalAddress" />
 
     <Button
-        android:id="@+id/press_me_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:height="40dp"
-        android:width="200dp"
-        android:layout_marginLeft="100dp"
-        android:text="@string/press_me"/>
+        android:text="SAVE"
+        android:id="@+id/btnSave"
+        android:onClick="saveContact"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/textView6"
+        android:layout_centerHorizontal="true"
+        android:textColor = "#ff205cff" />
 </LinearLayout>
 
 </ScrollView>

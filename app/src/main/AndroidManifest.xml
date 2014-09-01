@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.s212021265.dylancoetzee.ContactsLog.views.MainActivity"
+            android:name=".views.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,16 +16,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".views.DetailActivity"
+            android:label="@string/contact_details" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name="com.s212021265.dylancoetzee.ContactsLog.views.DetailActivity"
-            android:label="@string/contact_details">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MyDetailsActivity"
+            android:label="@string/title_activity_my_details" >
+        </activity>
+        <activity
+            android:name=".views.ViewContact"
+            android:label="@string/title_activity_details" >
+        </activity>
+        <activity
+            android:name=".views.EditContact"
+            android:label="@string/title_edit_contact" >
+        </activity>
     </application>
 
 </manifest>

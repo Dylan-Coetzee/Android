@@ -13,4 +13,9 @@
     <string name="lname">Last Name</string>
     <string name="fname">First Name</string>
     <string name="email">Email Address</string>
+    <string name="title_activity_my_details">MyDetailsActivity</string>
+    <string name="title_activity_details">View Contact</string>
+    <string name="title_edit_contact">Edit Contact</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

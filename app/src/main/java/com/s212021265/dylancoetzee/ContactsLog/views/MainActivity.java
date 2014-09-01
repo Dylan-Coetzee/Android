@@ -1,12 +1,8 @@
 package com.s212021265.dylancoetzee.ContactsLog.views;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,124 +10,60 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.s212021265.dylancoetzee.ContactsLog.MyDetailsActivity;
 import com.s212021265.dylancoetzee.ContactsLog.R;
 import com.s212021265.dylancoetzee.ContactsLog.domain.Contact;
 import com.s212021265.dylancoetzee.ContactsLog.repository.DataSourceDAO;
-import com.s212021265.dylancoetzee.ContactsLog.repository.Impl.DataSourceDAOImpl;
+import com.s212021265.dylancoetzee.ContactsLog.repository.Impl.DatasourceDAOImpl;
 
+/**
+ * Created by Dylan 21/08/2014.
+ */
 
 public class MainActivity extends Activity {
 
-    private Button pressMe;
-    private DataSourceDAO dao;
+    private EditText firstName;
+    private EditText lastName;
+    private EditText emailAddress;
+    private EditText cellNumber;
+    private EditText homeAddress;
 
-    EditText phone_number_edittext;
-    EditText last_name_edittext;
-    EditText first_name_edittext;
-    EditText email_address_edittext;
-    EditText home_address_edittext;
-
-    private static final String PREFS = "prefs";
-    private static final String PREF_NAME = "name";
-    SharedPreferences mSharedPreferences;
-
+    final DataSourceDAO dao = new DatasourceDAOImpl(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        displayWelcome();
-
-        pressMe = (Button) findViewById(R.id.press_me_button);
-        phone_number_edittext = (EditText) findViewById(R.id.phone_number_edittext);
-        last_name_edittext = (EditText) findViewById(R.id.last_name_edittext);
-        first_name_edittext = (EditText) findViewById(R.id.first_name_edittext);
-        email_address_edittext = (EditText) findViewById(R.id.email_address_edittext);
-        home_address_edittext = (EditText) findViewById(R.id.home_address_edittext);
-
-        dao = new DataSourceDAOImpl(this);
-
-        pressMe.setOnClickListener(new View.OnClickListener() {
+        Button btnSave = (Button)findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firstName = (EditText)findViewById(R.id.txtName);
+                lastName = (EditText)findViewById(R.id.txtLastName);
+                emailAddress = (EditText)findViewById(R.id.txtEmail);
+                cellNumber = (EditText)findViewById(R.id.txtPhoneNumber);
+                homeAddress = (EditText)findViewById(R.id.txtHomeAddress);
 
-               Log.i("button click", phone_number_edittext.getText().toString());
-
-                Contact contact = new Contact.Builder(phone_number_edittext.getText().toString())
-                        .setlName(last_name_edittext.getText().toString())
-                        .setfName(first_name_edittext.getText().toString())
-                        .setEmailAddress(email_address_edittext.getText().toString())
-                        .setHomeAddress(home_address_edittext.getText().toString())
+                Contact contact = new Contact.Builder(firstName.getText().toString())
+                        .lastName(lastName.getText().toString())
+                        .emailAddress(emailAddress.getText().toString())
+                        .cellNumber(cellNumber.getText().toString())
+                        .homeAddress(homeAddress.getText().toString())
                         .build();
 
                 dao.createContact(contact);
+                Toast.makeText(MainActivity.this, "User Created", Toast.LENGTH_LONG).show();
+                finish();
+                //toList(view);
 
-
-                int size = dao.getCursor();
-                contact = dao.findContactByID(size);
-
-                Intent detailIntent = new Intent(getApplicationContext(), DetailActivity.class);
-                detailIntent.putExtra("ContactID", contact.getId());
-                startActivity(detailIntent);
-
+                /*CREATE THE INTENT*/
+                final Intent intent = new Intent(MainActivity.this, ViewContact.class);
+                startActivity(intent);
             }
         });
+
     }
 
-    public void displayWelcome() {
-
-        // Access the device's key-value storage
-        mSharedPreferences = getSharedPreferences(PREFS, MODE_PRIVATE);
-
-        // Read the user's name,
-        // or an empty string if nothing found
-        String name = mSharedPreferences.getString(PREF_NAME, "");
-
-        if (name.length() > 0) {
-
-            // If the name is valid, display a Toast welcoming them
-            Toast.makeText(this, name + ",Please enter details, note: *compulsory fields", Toast.LENGTH_LONG).show();
-        } else {
-
-            // otherwise, show a dialog to ask for their name
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.setTitle("Hello!");
-            alert.setMessage("What is your name?");
-
-            // Create EditText for entry
-            final EditText input = new EditText(this);
-            alert.setView(input);
-
-            // Make an "OK" button to save the name
-            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int whichButton) {
-
-                    // Grab the EditText's input
-                    String inputName = input.getText().toString();
-
-                    // Put it into memory (don't forget to commit!)
-                    SharedPreferences.Editor e = mSharedPreferences.edit();
-                    e.putString(PREF_NAME, inputName);
-                    e.commit();
-
-                    // Welcome the new user
-                    Toast.makeText(getApplicationContext(), inputName + " ,Please enter details, note: *compulsory fields", Toast.LENGTH_LONG).show();
-                }
-            });
-
-            // Make a "Cancel" button
-            // that simply dismisses the alert
-            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int whichButton) {
-                }
-            });
-
-            alert.show();
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -151,4 +83,14 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void saveContact(View view) {
+
+    }
+
+    public void toList (View view) {
+        Intent intent = new Intent(getApplication(), ViewContact.class);
+        startActivity(intent);
+    }
+
 }

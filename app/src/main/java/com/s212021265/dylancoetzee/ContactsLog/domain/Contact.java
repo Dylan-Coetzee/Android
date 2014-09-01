@@ -1,38 +1,91 @@
 package com.s212021265.dylancoetzee.ContactsLog.domain;
 
 /**
- * Created by dylan.
+ * Created by Dylan 21/08/2014.
  */
 public class Contact {
-
     private int id;
-    private String fName;
-    private String lName;
+    private String firstName;
+    private String lastName;
     private String emailAddress;
     private String cellNumber;
     private String homeAddress;
 
-    public Contact(){};
+    private Contact() {
 
-    public Contact(Builder builder) {
-        this.id = builder.id;
-        this.fName = builder.fName;
-        this.lName = builder.lName;
-        this.emailAddress = builder.emailAddress;
-        this.cellNumber = builder.cellNumber;
-        this.homeAddress = builder.homeAddress;
+    }
+
+    private Contact(Builder builder) {
+        id = builder.id;
+        firstName = builder.firstName;
+        lastName = builder.lastName;
+        emailAddress = builder.emailAddress;
+        cellNumber = builder.cellNumber;
+        homeAddress = builder.homeAddress;
+    }
+
+    public static class Builder {
+        private int id;
+        private String firstName;
+        private String lastName;
+        private String emailAddress;
+        private String cellNumber;
+        private String homeAddress;
+
+        public Builder(String firstName) {
+            this.firstName = firstName;
+        }
+
+        public Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder emailAddress(String emailAddress) {
+            this.emailAddress = emailAddress;
+            return this;
+        }
+
+        public Builder cellNumber(String cellNumber) {
+            this.cellNumber = cellNumber;
+            return this;
+        }
+
+        public Builder homeAddress(String homeAddress) {
+            this.homeAddress = homeAddress;
+            return this;
+        }
+
+        public Builder id(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder contact(Contact contact) {
+            id = contact.getId();
+            firstName = contact.getFirstName();
+            lastName = contact.getLastName();
+            emailAddress = contact.getEmailAddress();
+            cellNumber = contact.getCellNumber();
+            homeAddress = contact.getHomeAddress();
+            return this;
+        }
+
+        public Contact build() {
+            return new Contact(this);
+        }
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getfName() {
-        return fName;
-    }
-
-    public String getlName() {
-        return lName;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getEmailAddress() {
@@ -46,63 +99,4 @@ public class Contact {
     public String getHomeAddress() {
         return homeAddress;
     }
-
-    public static class Builder {
-        public int id;
-        public String fName;
-        public String lName;
-        public String emailAddress;
-        public String cellNumber;
-        public String homeAddress;
-
-        public Builder(String cellPhone){
-            cellNumber = cellPhone;
-        }
-
-        public Builder setId(int id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder setfName(String fName) {
-            this.fName = fName;
-            return this;
-        }
-
-        public Builder setlName(String lName) {
-            this.lName = lName;
-            return this;
-        }
-
-        public Builder setEmailAddress(String emailAddress) {
-            this.emailAddress = emailAddress;
-            return this;
-        }
-
-        public Builder setCellNumber(String cellNumber) {
-            this.cellNumber = cellNumber;
-            return this;
-        }
-
-        public Builder setHomeAddress(String homeAddress) {
-            this.homeAddress = homeAddress;
-            return this;
-        }
-
-        public Builder Contact(Contact contact){
-            this.setId(contact.getId());
-            this.setCellNumber(contact.getCellNumber());
-            this.setEmailAddress(contact.getEmailAddress());
-            this.setfName(contact.getfName());
-            this.setlName(contact.getlName());
-            this.setHomeAddress(contact.getHomeAddress());
-            return this;
-        }
-
-        public Contact build(){
-            return new Contact(this);
-        }
-    }
-
-
 }
